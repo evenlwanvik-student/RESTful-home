@@ -11,4 +11,4 @@ I will be using [a successful Git branching model](https://nvie.com/posts/a-succ
 * multiple `feature` branches, whose name is based on the feature, will sprout of the develop branch.
 * A `release` branch to hold the deployed software, with only bug fixes and no new features.
 
-![test](images/git-branch-model.png)
+<img src="images/git-branch-model.png" width="400" height="500"/>
