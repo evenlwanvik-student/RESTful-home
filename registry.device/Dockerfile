@@ -7,4 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "python", "./run.py" ]
+RUN chmod +x ./run.sh
+
+CMD ./run.sh
+#CMD [ "python", "./run.py" ]

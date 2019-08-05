@@ -1,7 +1,7 @@
 # RESTful-home
 Home automation project using REST services on Raspberry Pi
 
-## Device registry service
+# Device registry service
 
 All resources have the form
 
@@ -14,7 +14,7 @@ All resources have the form
 
 Subsequent response will only detail the expected value of the `data field`
 
-## List of all devices
+# List of all devices
 
 **Definition**
 
@@ -41,7 +41,7 @@ Subsequent response will only detail the expected value of the `data field`
 ]
 ```
 
-### Registering a new device
+## Registering a new device
 
 **Definition**
 
@@ -67,7 +67,7 @@ Subsequent response will only detail the expected value of the `data field`
     }
 ```
 
-## Lookup device details
+# Lookup device details
 
 **Definition**
 
@@ -87,7 +87,7 @@ Subsequent response will only detail the expected value of the `data field`
     }
 ```
 
-## Delete a device
+# Delete a device
 
 **Definition**
 
