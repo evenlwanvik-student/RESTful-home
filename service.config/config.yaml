@@ -1,0 +1,9 @@
+base:
+  apiGateway: http://service.api-gateweay
+  redis:
+    host: redis
+    port: 6379
+  test: "test"
+
+service.registry.device:
+  database: /devices.db
