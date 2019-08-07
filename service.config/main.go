@@ -4,6 +4,7 @@ import (
 	//"fmt"
 	"net/http"
 	"time"
+	"log"
 
 	"github.com/gorilla/mux" // HTTP router and URL matcher for building Go web servers
 	"github.com/evenlwanvik-student/RESTful-home/service.config/domain"
@@ -29,6 +30,6 @@ func main() {
 	// Set up http router for incomming config requests
 	router := mux.NewRouter()
 	router.HandleFunc("/read/{serviceName}", c.ReadConfig)
-	http.ListenAndServe(":8080", router)
-	
+	// log and exit on failure
+	log.Fatal(http.ListenAndServe(":80", router))
 }
