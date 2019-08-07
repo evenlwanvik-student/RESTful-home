@@ -6,9 +6,7 @@ import (
 	"encoding/json"
 
 	"github.com/gorilla/mux" // HTTP router and URL matcher for building Go web servers
-	// change back when moving into correct branch
-	"../domain"
-	//"github.com/evenlwanvik-student/RESTful-home/config/domain"
+	"github.com/evenlwanvik-student/RESTful-home/service.config/domain"
 )
 
 type Controller struct {

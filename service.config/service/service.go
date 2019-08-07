@@ -5,9 +5,7 @@ import (
 	"log"
 	"time"
 
-	// change back when moving into correct branch
-	"../domain"
-	//"github.com/evenlwanvik-student/RESTful-home/config/domain"
+	"github.com/evenlwanvik-student/RESTful-home/service.config/domain"
 )
 
 type ConfigService struct {
