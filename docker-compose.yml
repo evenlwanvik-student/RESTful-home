@@ -18,9 +18,7 @@ services:
       - 6001:80
 
   service.registry.device:
-    build:
-      dockerfile: ./service.registry.device/Dockerfile
-      context: .
+    build: ./service.registry.device/
     #image: restful-home-service-device-registry
     volumes:
       - ./service.registry.device:/usr/src/app
