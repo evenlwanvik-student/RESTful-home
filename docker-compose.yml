@@ -7,14 +7,14 @@ services:
   #  ports: 
   #    - "6379:6379"
  
-  web.client:
-    build: ./web.client
-    image: restful-home-web-client
-    volumes:
-      - ./web.client:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - 6000:8080
+#  web.client:
+#    build: ./web.client
+#    image: restful-home-web-client
+#    volumes:
+#      - ./web.client:/usr/src/app
+#      - /usr/src/app/node_modules
+#    ports:
+#      - 6000:8080
 
 #  service.config:
 #    build: ./service.config
@@ -35,3 +35,15 @@ services:
 #      - 6002:80
 #    #environment:
 #    #  APP_CONFIG_FILE: /usr/src/app/config/development.py
+
+  service.controller.hue:
+    build: ./service.controller.hue/
+    image: restful-home-service-controller-hue
+    volumes:
+      - ./service.controller.hue:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 6003:80
+    command: npm start
+    #environment:
+    #  APP_CONFIG_FILE: /usr/src/app/config/development.py
