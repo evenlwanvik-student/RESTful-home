@@ -44,6 +44,8 @@ services:
       - /usr/src/app/node_modules
     ports:
       - 6003:80
+    expose: 
+      - "80"
     command: npm start
     #environment:
     #  APP_CONFIG_FILE: /usr/src/app/config/development.py
