@@ -4,17 +4,17 @@
 
 const axios = require("axios")
 
-
-// for one hue specific hue light
-const host = "http://192.168.1.15";
-const bridgeName = "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n";
-const bridgeUrl = `${host}/api/${bridgeName}` // full URL to hue bridge (controller)
-
-
 class HueClient {
 
+    // Returns the hueUrl of this instance
+    get hueUrl() {
+        return `${this.hostGateway}/api/${this.hostName}`;
+    }
+
+    // Fetch current state of hue lamp
     async fetchState(hueId) {
-        return await axios.get(`${bridgeUrl}/lights/${hueId}/state`)  
+        rsp = await axios.get(`${bridgeUrl}/lights/${hueId}`) 
+        return rsp.data.state
     }
 
     /**
@@ -38,17 +38,18 @@ class HueClient {
     };
 
 
-    async applyState(device, state) {
+    async applyState(hueId, state) {
         update_state = {
             "on": state.on,
             "bri": state.brightness
         }
         // Update current Hue Bridge state of device with idempotent put request
-        await axios.put(`${bridgeUrl}/lights/${hueId}/state`, hueState)
+        await axios.put(`${bridgeUrl}/lights/${hueId}/state`, update_state)
 
-        return await fetchState(hueId)
+        return await this.fetchState(hueId).data
     }
 }
+
 
 const hueClient = new HueClient();
 exports = module.exports = hueClient;

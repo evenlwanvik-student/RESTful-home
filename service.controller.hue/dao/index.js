@@ -7,12 +7,9 @@
 const axios = require("axios");
 const hueClient = require("../api/hueClient");
 
-let devices = [];
 
-// for one hue specific hue light
-const host = "http://192.168.1.15";
-const bridgeName = "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n";
-const bridgeUrl = `${host}/api/${bridgeName}` // full URL to hue bridge (controller)
+// Store hue devices in array
+let devices = [];
 
 
 const findDeviceByHueId = (hueId) => {
@@ -36,7 +33,7 @@ const fetchAllStates = async() => {
     devices = rsp.data.data
 
     // Nested object with states of each light registered on hue bridge
-    lightStates = await hueClient.fetchAllStates(bridgeUrl)
+    lightStates = await hueClient.fetchAllStates()
     
     // TODO: Add both attributes and states as default field when registering device
     for (const hueId in lightStates) {
@@ -52,18 +49,10 @@ const fetchAllStates = async() => {
 };
 
 
-const applyState = (identifier, state) => {
-    const hueState = {
-        on: state.on,
-        bri: state.brightness
-    };
-    // Update current Hue Bridge state of device with idempotent put request
-    bridgeStateUrl = `${hueUrl}/lights/${device.attributes.hueId}/state`
-    axios.put(bridgeStateUrl, hueState)
-        .then(() => {
-            // Check if state has been updated
-            axios.get(bridgeStateUrl)
-        });
+// Apply new state to hue bridge and update local device store
+const applyState = async(hueId, state) => {
+    device = findDeviceByHueId(hueId)
+    device.state = await hueClient.applyState(hueId, state)
 };
 
 

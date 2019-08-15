@@ -59,8 +59,7 @@ class DeviceList(Resource):
         parser.add_argument('identifier', required=True)
         parser.add_argument('name', required=True)
         parser.add_argument('device_type', required=True)
-        parser.add_argument('controller_name', required=True)
-        parser.add_argument('controller_gateway', required=True)
+        #parser.add_argument('controller_name', required=True)
         parser.add_argument('attributes', type=dict, required=False, location='json')
         
         # Parse the arguments into an object

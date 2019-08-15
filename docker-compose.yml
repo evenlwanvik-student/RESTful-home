@@ -16,14 +16,14 @@ services:
 #    ports:
 #      - 6000:8080
 
-#  service.config:
-#    build: ./service.config
-#    image: restful-home-service-config
-#    volumes:
-#      - ./service.config:/go/src/github.com/evenlwanvik/RESTful-home/service.config
-#      - ./service.config/config.yaml:/data/config.yaml
-#    ports:
-#      - 6001:80
+  service.config:
+    build: ./service.config
+    image: restful-home-service-config
+    volumes:
+      - ./service.config:/go/src/github.com/evenlwanvik/RESTful-home/service.config
+      - ./service.config/config.yaml:/data/config.yaml
+    ports:
+      - 6001:80
 
   service.registry.device:
     build: ./service.registry.device/
