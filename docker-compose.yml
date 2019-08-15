@@ -25,16 +25,16 @@ services:
 #    ports:
 #      - 6001:80
 
-#  service.registry.device:
-#    build: ./service.registry.device/
-#    image: restful-home-service-device-registry
-#    volumes:
-#      - ./service.registry.device:/usr/src/app
-#      #- ./libraries/python:/root/.local/lib/python3.5/site-packages
-#    ports:
-#      - 6002:80
-#    #environment:
-#    #  APP_CONFIG_FILE: /usr/src/app/config/development.py
+  service.registry.device:
+    build: ./service.registry.device/
+    image: restful-home-service-device-registry
+    volumes:
+      - ./service.registry.device:/usr/src/app
+      #- ./libraries/python:/root/.local/lib/python3.5/site-packages
+    ports:
+      - 6002:80
+    #environment:
+    #  APP_CONFIG_FILE: /usr/src/app/config/development.py
 
   service.controller.hue:
     build: ./service.controller.hue/

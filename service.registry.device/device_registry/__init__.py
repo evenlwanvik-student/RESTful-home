@@ -1,7 +1,6 @@
 import os
 import markdown
 import shelve # persistent data storage, string key and any object as value
-from webargs import fields
 from webargs.flaskparser import parser
 
 # Import the flask framework
@@ -9,7 +8,7 @@ from webargs.flaskparser import parser
     flask_restful: flask extension with useful API tools                
 '''
 from flask import Flask, g
-from flask_restful import Resource, Api, request
+from flask_restful import Resource, Api, reqparse
 
 # Create instance of Flask
 app = Flask(__name__)
@@ -54,14 +53,18 @@ class DeviceList(Resource):
 
     def post(self):
         shelf = get_db()
-        device_args = {
-            'identifier': fields.Str(required=True),
-            'name': fields.Str(required=True),
-            'type': fields.Str(required=True),
-            'controller_gateway': fields.Str(required=True)
-        }
+
+        parser = reqparse.RequestParser()
+
+        parser.add_argument('identifier', required=True)
+        parser.add_argument('name', required=True)
+        parser.add_argument('device_type', required=True)
+        parser.add_argument('controller_name', required=True)
+        parser.add_argument('controller_gateway', required=True)
+        parser.add_argument('attributes', type=dict, required=False, location='json')
+        
         # Parse the arguments into an object
-        args = parser.parse(device_args, request)
+        args = parser.parse_args()
 
         # Insert arguments into database
         shelf[args['identifier']] = args

@@ -28,14 +28,12 @@ Subsequent response will only detail the expected value of the `data field`
     {
         "identifier": "bedroom-lamp",
         "name": "Bedroom lamp",
-        "type": "switch",
-        "controller_gateway": "192.162.0.1"
-    },
-    {
-        "identifier": "bluetooth-speaker",
-        "name": "ANKER soundcore bluetook speaker",
-        "type": "speaker",
-        "controller_gateway": "192.162.0.8"
+        "device_type": "switch",
+        "controller_name": "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n",
+        "controller_gateway": "192.1.62.0.1",
+        "attributes": {
+            "hueId": 1
+        }
     }
 ]
 ```
@@ -58,12 +56,16 @@ Subsequent response will only detail the expected value of the `data field`
 - `201 Created` on success
 
 ```json
-    {
-        "identifier": "bedroom-lamp",
-        "name": "Bedroom lamp",
-        "type": "switch",
-        "controller_gateway": "192.1.62.0.1"
+{
+    "identifier": "bedroom-lamp",
+    "name": "Bedroom lamp",
+    "device_type": "switch",
+    "controller_name": "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n",
+    "controller_gateway": "192.1.62.0.1",
+    "attributes": {
+        "hueId": 1
     }
+}
 ```
 
 # Lookup device details
@@ -78,12 +80,16 @@ Subsequent response will only detail the expected value of the `data field`
 - `200 OK` on success
 
 ```json
-    {
-        "identifier": "bedroom-lamp",
-        "name": "Bedroom lamp",
-        "type": "switch",
-        "controller_gateway": "192.1.62.0.1"
+{
+    "identifier": "bedroom-lamp",
+    "name": "Bedroom lamp",
+    "device_type": "switch",
+    "controller_name": "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n",
+    "controller_gateway": "192.1.62.0.1",
+    "attributes": {
+        "hueId": 1
     }
+}
 ```
 
 # Delete a device
@@ -98,10 +104,20 @@ Subsequent response will only detail the expected value of the `data field`
 - `204 No Content` on success
 
 ```json
-    {
-        "identifier": "bedroom-lamp",
-        "name": "Bedroom lamp",
-        "type": "switch",
-        "controller_gateway": "192.1.62.0.1"
+{
+    "identifier": "bedroom-lamp",
+    "name": "Bedroom lamp",
+    "device_type": "switch",
+    "controller_name": "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n",
+    "controller_gateway": "192.1.62.0.1",
+    "attributes": {
+        "hueId": 1
     }
+}
 ```
+
+# Postman
+
+Postman is an application which is tailor made to list or add devices currently registered in the database:
+
+![postman](../images/register-device-postman.png)
