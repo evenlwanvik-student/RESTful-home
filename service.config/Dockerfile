@@ -9,7 +9,7 @@ RUN go get -d -v ./...
 RUN go install -v ./...
 
 CMD CompileDaemon -build="go install ." -command="/go/bin/service.config"
-
+RUN ls
 
 
 

@@ -1,4 +1,16 @@
+base:
+  apiGateway: http://service.api-gateweay
+  redis:
+    host: redis
+    port: 6379
+
+service.registry.device:
+  database: /devices.db
+
 service.controller.hue:
   hueBridge:
-    hostGateway: "http://192.168.1.15"
-    hostName: "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n"
+    hostGateway: http://192.168.1.15
+    hostName: RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n
+
+unicorn:
+  skrrt: "Missing unicorn: If you find it, you are probably high!"

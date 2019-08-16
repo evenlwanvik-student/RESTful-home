@@ -6,15 +6,18 @@ const axios = require("axios")
 
 class HueClient {
 
-    // Returns the hueUrl of this instance
-    get hueUrl() {
+    // Returns this instances bridge URL
+    get bridgeUrl() {
         return `${this.hostGateway}/api/${this.hostName}`;
     }
 
     // Fetch current state of hue lamp
     async fetchState(hueId) {
-        rsp = await axios.get(`${bridgeUrl}/lights/${hueId}`) 
-        return rsp.data.state
+        rsp = await axios.get(`${this.bridgeUrl}/lights/${hueId}`) 
+        return {
+            on: rsp.data.state.on,
+            brightness: rsp.data.state.bri
+        };
     }
 
     /**
@@ -23,7 +26,7 @@ class HueClient {
      */
     async fetchAllStates() {
 
-        const rsp = await axios.get(`${bridgeUrl}/lights`)
+        const rsp = await axios.get(`${this.bridgeUrl}/lights`)
 
         const lightStates = {}
 
@@ -39,12 +42,14 @@ class HueClient {
 
 
     async applyState(hueId, state) {
-        update_state = {
-            "on": state.on,
-            "bri": state.brightness
-        }
+        console.log("debugging", state)
+        const update_state = {
+            on: state.on,
+            bri: state.brightness,
+        };
+        console.log("debugging", update_state)
         // Update current Hue Bridge state of device with idempotent put request
-        await axios.put(`${bridgeUrl}/lights/${hueId}/state`, update_state)
+        await axios.put(`${this.bridgeUrl}/lights/${hueId}/state`, update_state)
 
         return await this.fetchState(hueId).data
     }

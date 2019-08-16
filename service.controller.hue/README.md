@@ -48,7 +48,8 @@ The properties to be changed and their values
             "min": 0,
             "max": 255,
             "value": 73
-        }
+        },
+        "on": true
     }
 }
 ```

@@ -23,18 +23,25 @@ func (c *Controller) ReadConfig(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		// todo: find a way to write json response instead of "error" (lib/go/request and response)
 		fmt.Fprintf(w, "error")
+		return
 	}
+
+	fmt.Fprintf(w, "error")
 
 	config, err := c.Config.Get(serviceName)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprintf(w, "error")
+		return
 	}
+	
+	fmt.Println("cat", 9000)
 
 	rsp, err := json.Marshal(&config)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		fmt.Fprintf(w, "error")
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)

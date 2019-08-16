@@ -2,8 +2,11 @@ const express = require('express')
 const dao = require('../dao')
 
 // Register middleware and routing for the requests directed to app instance
-const register = (app) => {
+const register = app => {
     
+    // adding json parsing as first middleware for incomming requests
+    app.use(express.json());    
+
     // second function logs request ("next" is next function)
     app.use((req, res, next) => {
         // Interpolating the request's fields into log string
@@ -13,16 +16,25 @@ const register = (app) => {
 
     // Responds with device data based on identifier
     app.get("/device/:deviceId", (req, res) => {
-        const device = hueClient.findDeviceByIdentifier(req.params.deviceId)
-        console.log(req.params.deviceId)
+
+        const device = dao.findDeviceByIdentifier(req.params.deviceId)
         res.json({data: device})
+
     });
 
     // PATCH is a request method for making partial changes to an existing resource
-    app.patch("/device/:deviceId", (req, res) => {
-        const device = hueClient.findDeviceByIdentifier(req.params.deviceId)
-        const state = req.body;
-        applyState(device, state)
+    app.patch("/device/:deviceId", (req, res, next) => {
+
+        const device = dao.findDeviceByIdentifier(req.params.deviceId)
+        const state = req.body.state;
+
+        dao.applyState(device, state)
+        .then(() => {
+            // Respond with the updated device state
+            res.json({ data: device })
+        })
+        .catch(next) // error handler
+
     });
 
     // Error handler
@@ -33,6 +45,6 @@ const register = (app) => {
 };
 
 
-
+exports = module.exports = { register };
 
 

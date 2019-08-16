@@ -63,7 +63,7 @@ Subsequent response will only detail the expected value of the `data field`
     "controller_name": "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n",
     "controller_gateway": "192.1.62.0.1",
     "attributes": {
-        "hueId": 1
+        "hue_id": 1
     }
 }
 ```
@@ -87,7 +87,7 @@ Subsequent response will only detail the expected value of the `data field`
     "controller_name": "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n",
     "controller_gateway": "192.1.62.0.1",
     "attributes": {
-        "hueId": 1
+        "hue_id": 1
     }
 }
 ```
@@ -111,7 +111,7 @@ Subsequent response will only detail the expected value of the `data field`
     "controller_name": "RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n",
     "controller_gateway": "192.1.62.0.1",
     "attributes": {
-        "hueId": 1
+        "hue_id": 1
     }
 }
 ```

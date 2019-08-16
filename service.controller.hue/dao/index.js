@@ -13,7 +13,7 @@ let devices = [];
 
 
 const findDeviceByHueId = (hueId) => {
-    return devices.find(device => device.attributes.hueId == hueId)
+    return devices.find(device => device.attributes.hue_id == hueId)
 };
 
 
@@ -35,6 +35,8 @@ const fetchAllStates = async() => {
     // Nested object with states of each light registered on hue bridge
     lightStates = await hueClient.fetchAllStates()
     
+    console.log("::: Fetching states from hue bridge: ")
+
     // TODO: Add both attributes and states as default field when registering device
     for (const hueId in lightStates) {
 
@@ -45,15 +47,18 @@ const fetchAllStates = async() => {
 
         // create or update the state key-value pairs
         Object.assign(device, { "state": lightStates[hueId] } );
+
+        console.log(":::", hueId, device.state)
     };
+    
 };
 
 
 // Apply new state to hue bridge and update local device store
-const applyState = async(hueId, state) => {
-    device = findDeviceByHueId(hueId)
-    device.state = await hueClient.applyState(hueId, state)
+const applyState = async(device, state) => {
+    const newState = await hueClient.applyState(device.attributes.hue_id, state)
+    Object.assign(device, newState);
 };
 
 
-module.exports = {findDeviceByHueId, fetchAllStates, applyState}
+module.exports = {findDeviceByHueId, findDeviceByIdentifier, fetchAllStates, applyState}
