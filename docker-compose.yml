@@ -16,7 +16,11 @@ services:
       - ./web.client:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - 6011:8080
+      - 7000:80
+    expose: 
+      - "80"
+    env_file:
+      - ./.env
 
 #  service.config:
 #    build: ./service.config
@@ -25,7 +29,7 @@ services:
 #      - ./service.config:/go/src/github.com/evenlwanvik/RESTful-home/service.config
 #      - ./service.config/config.yaml:/data/config.yaml
 #    ports:
-#      - 6001:80
+#      - 7001:80
 
 #  service.registry.device:
 #    build: ./service.registry.device/
@@ -34,7 +38,7 @@ services:
 #      - ./service.registry.device:/usr/src/app
 #      #- ./libraries/python:/root/.local/lib/python3.5/site-packages
 #    ports:
-#      - 6002:80
+#      - 7002:80
     #environment:
     #  APP_CONFIG_FILE: /usr/src/app/config/development.py
 
@@ -45,7 +49,7 @@ services:
 #      - ./service.controller.hue:/usr/src/app
 ##      - /usr/src/app/node_modules
  #   ports:
- #     - 6003:80
+ #     - 7003:80
  #   expose: 
  #     - "80"
  #   command: npm start

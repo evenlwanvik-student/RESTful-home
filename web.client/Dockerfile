@@ -1,7 +1,7 @@
 # build stage
 FROM node:lts-alpine as build-stage
 
-RUN mkdir /usr/src/app
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package*.json ./
@@ -23,9 +23,9 @@ RUN npm run build
 # production stage
 FROM nginx:stable-alpine as production-stage
 
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html
 
 # Expose ports for web access and debugging
-EXPOSE 8080 9229
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
