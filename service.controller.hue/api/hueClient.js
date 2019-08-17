@@ -42,12 +42,11 @@ class HueClient {
 
 
     async applyState(hueId, state) {
-        console.log("debugging", state)
         const update_state = {
             on: state.on,
             bri: state.brightness,
         };
-        console.log("debugging", update_state)
+        
         // Update current Hue Bridge state of device with idempotent put request
         await axios.put(`${this.bridgeUrl}/lights/${hueId}/state`, update_state)
 

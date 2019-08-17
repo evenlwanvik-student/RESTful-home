@@ -7,45 +7,47 @@ services:
   #  ports: 
   #    - "6379:6379"
  
-#  web.client:
-#    build: ./web.client
-#    image: restful-home-web-client
+  web.client:
+    build: ./web.client
+      #context: ./web.client
+      #dockerfile: dev.dockerfile
+    image: restful-home-web-client
+    volumes:
+      - ./web.client:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 6011:8080
+
+#  service.config:
+#    build: ./service.config
+#    image: restful-home-service-config
 #    volumes:
-#      - ./web.client:/usr/src/app
-#      - /usr/src/app/node_modules
+#      - ./service.config:/go/src/github.com/evenlwanvik/RESTful-home/service.config
+#      - ./service.config/config.yaml:/data/config.yaml
 #    ports:
-#      - 6000:8080
+#      - 6001:80
 
-  service.config:
-    build: ./service.config
-    image: restful-home-service-config
-    volumes:
-      - ./service.config:/go/src/github.com/evenlwanvik/RESTful-home/service.config
-      - ./service.config/config.yaml:/data/config.yaml
-    ports:
-      - 6001:80
-
-  service.registry.device:
-    build: ./service.registry.device/
-    image: restful-home-service-device-registry
-    volumes:
-      - ./service.registry.device:/usr/src/app
-      #- ./libraries/python:/root/.local/lib/python3.5/site-packages
-    ports:
-      - 6002:80
+#  service.registry.device:
+#    build: ./service.registry.device/
+#    image: restful-home-service-device-registry
+#    volumes:
+#      - ./service.registry.device:/usr/src/app
+#      #- ./libraries/python:/root/.local/lib/python3.5/site-packages
+#    ports:
+#      - 6002:80
     #environment:
     #  APP_CONFIG_FILE: /usr/src/app/config/development.py
 
-  service.controller.hue:
-    build: ./service.controller.hue/
-    image: restful-home-service-controller-hue
-    volumes:
-      - ./service.controller.hue:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - 6003:80
-    expose: 
-      - "80"
-    command: npm start
+#  service.controller.hue:
+#    build: ./service.controller.hue/
+#    image: restful-home-service-controller-hue
+#    volumes:
+#      - ./service.controller.hue:/usr/src/app
+##      - /usr/src/app/node_modules
+ #   ports:
+ #     - 6003:80
+ #   expose: 
+ #     - "80"
+ #   command: npm start
     #environment:
     #  APP_CONFIG_FILE: /usr/src/app/config/development.py

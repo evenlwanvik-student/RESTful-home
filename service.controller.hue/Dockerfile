@@ -3,8 +3,6 @@ FROM node:11-alpine
 # Install nodemon
 RUN npm install -g nodemon
 
-# Use pre-existing node folder as workdir
-#WORKDIR /usr/src/app
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
