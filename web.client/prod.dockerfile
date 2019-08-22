@@ -9,9 +9,6 @@ RUN npm install
 
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-COPY package.json /usr/src/app/package.json
-RUN npm install
-
 RUN npm install -g @vue/cli
 
 COPY . /usr/src/app
@@ -26,6 +23,6 @@ FROM nginx:stable-alpine as production-stage
 COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html
 
 # Expose ports for web access and debugging
-EXPOSE 80
+EXPOSE 8080 9229
 
 CMD ["nginx", "-g", "daemon off;"]

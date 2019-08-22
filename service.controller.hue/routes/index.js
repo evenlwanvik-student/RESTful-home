@@ -16,8 +16,9 @@ const register = app => {
 
     // Responds with device data based on identifier
     app.get("/device/:deviceId", (req, res) => {
-
+        console.log(req.params.deviceId)
         const device = dao.findDeviceByIdentifier(req.params.deviceId)
+        console.log(device)
         res.json({data: device})
 
     });

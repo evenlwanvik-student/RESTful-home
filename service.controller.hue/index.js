@@ -11,6 +11,7 @@ axios.get("http://service.config/read/service.controller.hue")
     .then(rsp => {
         hueClient.hostGateway = rsp.data.hueBridge.hostGateway
         hueClient.hostName = rsp.data.hueBridge.hostName
+        
         return dao.fetchAllStates()
     })
     .then(() => {
