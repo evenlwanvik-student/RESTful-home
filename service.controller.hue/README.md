@@ -1,3 +1,8 @@
+# 
+
+The device registry service is the first microservice built for this project, and stores the information about all of the devices in the system that can be controlled. At its core it only has the basic abilities to create, read, and delete the states of the devices.
+
+
 ### get device state
 
 **Definition**
