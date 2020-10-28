@@ -10,7 +10,9 @@ service.registry.device:
 service.controller.hue:
   hueBridge:
     hostGateway: http://192.168.1.15
-    hostName: RvA81335RAdFQRi6VQ4t-MsmzWaCZTzWlr6yk21n
+    hostName: laPyLGIKgtCfZ4jRDwJRhbTPoiwHxl-WBxu-ZT5l
 
 unicorn:
   skrrt: "Missing unicorn: If you find it, you are probably high!"
+
+  

@@ -26,6 +26,9 @@ services:
       - 7002:80
     #environment:
     #  APP_CONFIG_FILE: /usr/src/app/config/development.py
+    
+    depends_on:
+      - service.config # need this one here or no?
 
   service.controller.hue:
     build: ./service.controller.hue/
@@ -37,6 +40,8 @@ services:
       - 7003:80
     expose: 
       - "80"
+    depends_on:
+      - service.config
     command: npm start
     #environment:
     #  APP_CONFIG_FILE: /usr/src/app/config/development.py
@@ -53,3 +58,6 @@ services:
       - 7000:8080
     env_file:
       - ./.env
+
+    depends_on: # need this one here or no?
+      - service.config

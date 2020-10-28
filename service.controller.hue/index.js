@@ -11,7 +11,7 @@ axios.get("http://service.config/read/service.controller.hue")
     .then(rsp => {
         hueClient.hostGateway = rsp.data.hueBridge.hostGateway
         hueClient.hostName = rsp.data.hueBridge.hostName
-        
+        console.log('*********** TESTING DEBUGGING ***********')
         return dao.fetchAllStates()
     })
     .then(() => {
@@ -19,7 +19,7 @@ axios.get("http://service.config/read/service.controller.hue")
         // according to the sequence of implementation
         const app = express();
         routes.register(app);
-        app.listen(port, () => console.log(`Listening on port ${port}`));
+        app.listen(port, () => console.log('Listening on port ${port}'));
     })
     .catch(err => {
         console.error("Error initialising the service -", err)

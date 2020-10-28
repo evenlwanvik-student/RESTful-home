@@ -1,7 +1,7 @@
 /**
  * Data Access Object (dao) is a device storage abstraction
  * Typically this would be stored in a database, but I'll use a 
- * simple persistant array for now, since I only have 2 devices for now.
+ * simple persistant array for now, since I only have a few devices.
  */
 
 const axios = require("axios");

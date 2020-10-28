@@ -1,4 +1,5 @@
 /**
+ * Interactions witht he hue bridge
  * Hue Bridge Client (API)
  */
 

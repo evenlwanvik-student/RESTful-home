@@ -1,3 +1,5 @@
+/* Routes includes all the functions that will handle the end-point */
+
 const express = require('express')
 const dao = require('../dao')
 
