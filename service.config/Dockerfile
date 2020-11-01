@@ -1,29 +1,12 @@
-FROM golang:latest
-RUN go get -u golang.org/x/lint/golint
-RUN go get github.com/githubnemo/CompileDaemon
+FROM node:11-alpine
 
-WORKDIR /go/src/github.com/evenlwanvik/RESTful-home/service.config
-COPY . .
+# Install nodemon
+RUN npm install -g nodemon
 
-RUN go get -d -v ./...
-RUN go install -v ./...
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-CMD CompileDaemon -build="go install ." -command="/go/bin/service.config"
-RUN ls
-
-
-
-#FROM golang:latest
-#RUN go get github.com/golang/dep/cmd/dep
-
-#WORKDIR /go/src/github.com/evenlwanvik/RESTful-home
-#COPY . /go/src/github.com/evenlwanvik/RESTful-home/
-
-#RUN dep ensure
-#RUN CGO_ENABLED=0 GOOS=linux go install ./service.config
-
-#FROM alpine:latest
-#WORKDIR /root/
-#COPY --from=0 /go/bin/service.config .
-#CMD ["./service.config"]
-
+# Install app dependencies
+COPY package.json .
+RUN npm install

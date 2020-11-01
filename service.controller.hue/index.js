@@ -7,11 +7,10 @@ const port = 80;
 
 
 // Read configuration for hue bridge
-axios.get("http://service.config/read/service.controller.hue")
+axios.get("http://service.config/read?name=service.controller.hue")
     .then(rsp => {
         hueClient.hostGateway = rsp.data.hueBridge.hostGateway
         hueClient.hostName = rsp.data.hueBridge.hostName
-        console.log('*********** TESTING DEBUGGING ***********')
         return dao.fetchAllStates()
     })
     .then(() => {
